@@ -10,11 +10,35 @@ services:
       - labnet
     restart: unless-stopped
 
-  payment-service:
-    image: ghcr.io/lance-cruz/cicd1_project/app:45655d10cadd8eb7a39aee55575fd123289a4cc2
+  login-service:
+    image: ghcr.io/eoin1955/projectwork/app:f576de787820eef144d581a25f2f0bbdeadd740e
     env_file: ./.env
     depends_on:
       - db
+    ports:
+      - "8080:8080"
+    networks:
+      - labnet
+    restart: unless-stopped
+
+  book-service:
+    image: ghcr.io/anzelinaharevic/bookshopproject/app:079220e3b847f9016e471b65155567e8c35040ac
+    env_file: ./.env
+    depends_on:
+      - db
+      - login-service
+    ports:
+      - "8081:8081"
+    networks:
+      - labnet
+    restart: unless-stopped
+
+  payment-service:
+    image: ghcr.io/lance-cruz/cicd1_project/app:a0dd670e4d06084f4c7d6abcc8a02ba7338a2e7a
+    env_file: ./.env
+    depends_on:
+      - db
+      - book-service
     ports:
       - "8082:8082"
     networks:
