@@ -11,7 +11,7 @@ services:
     restart: unless-stopped
 
   login-service:
-    image: ghcr.io/eoin1955/projectwork/app:c33efd847d5af04a7c2218a46070cce9ba37d0ff
+    image: ghcr.io/eoin1955/projectwork/app:e2edd219354708318059b662dcdd44ef968e7de0
     env_file: ./.env
     depends_on:
       - db
@@ -22,7 +22,7 @@ services:
     restart: unless-stopped
 
   book-service:
-    image: ghcr.io/anzelinaharevic/bookshopproject/app:079220e3b847f9016e471b65155567e8c35040ac
+    image: ghcr.io/anzelinaharevic/bookshopproject/app:a87a9a294ea8e7089456a0df6201fe0da5b5d747
     env_file: ./.env
     depends_on:
       - db
